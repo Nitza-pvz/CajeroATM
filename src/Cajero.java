@@ -42,18 +42,19 @@ public class Cajero {
     }
 
     public void imprimirTicket(Transaccion t, Cuenta cta) {
-        System.out.println("**\tBBVA BANCOMER, S.A.\t**");
-        System.out.println("FECHA: "+t.getFecha());
-        System.out.println(t.tipo.toUpperCase());
-        System.out.println("\nCLIENTE: "+cta.cliente.nombre.toUpperCase());
+        System.out.println("\n**\tBBVA BANCOMER, S.A.\t**");
+        System.out.println("CAJERO ATM / BANCO: "+banco.toUpperCase());
         System.out.println("UBICADO EN: "+ubicacion.toUpperCase());
-        System.out.println("\nFOLIO: "+t.getIDTransaccion());
+        System.out.println("FECHA: "+t.getFecha());
+        System.out.println("TIPO DE TRANSACCION: "+t.tipo.toUpperCase());
+        System.out.println("FOLIO: "+t.getIDTransaccion());
         System.out.println("CUENTA: "+cta.getNumeroCuenta());
+        System.out.println("CLIENTE: "+cta.cliente.nombre.toUpperCase());
         if (t.tipo.equals("Transferencia")) {
             System.out.println("CUENTA DESTINO: "+t.getCuentaDestino());
         }
         System.out.println("IMPORTE: $"+t.getMonto());
         System.out.println("SALDO: $"+cta.getSaldo());
-        System.out.println("\t\tBBVA BANCOMER");
+        System.out.println("---------- BBVA BANCOMER ----------\n");
     }
 }

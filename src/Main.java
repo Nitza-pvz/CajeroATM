@@ -66,6 +66,7 @@ public class Main {
                 break;
             }
         }
+        System.out.println("SALDO: $"+cuentaOr.saldo);
         System.out.println("Seleccione el tipo de transacción:");
         System.out.println("1. Transferencia");
         System.out.println("2. Retiro de Efectivo");
@@ -73,8 +74,8 @@ public class Main {
         System.out.print("Ingrese el monto: ");
         double monto = entrada.nextDouble();
         if (op == 1) {
-            System.out.print("Ingrese el número de cuenta de destino: ");
-            String cuentaDestino = entrada.nextLine();
+            System.out.println("Ingrese el número de cuenta de destino: ");
+            String cuentaDestino = entrada.next();
             for (Cuenta cuenta : cuentas) {
                 if (cuenta.numeroCuenta.equals(cuentaDestino)) {
                     atm.Transferir(cuentaOr, cuenta, cuenta.tipo, monto);
@@ -86,5 +87,6 @@ public class Main {
         } else {
             System.out.println("Opción no válida... Saliendo");
         }
+        entrada.close();
     }
 }
