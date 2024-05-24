@@ -4,7 +4,7 @@ Crear proyecto para simular funcionalidad de cajero automático con las siguient
     2.-En el cajero automático se podrán hacer solo dos transacciones Retirar y Transferir, 
         de las cuales se debe registrar identificador de la transacción, fecha, tipo 
         (Retiro, Transferencia) y monto, en el caso de las transferencias también se requiere 
-        registrar la cuenta destino.  
+        registrar la cuenta destino.
     3.-Para poder realizar alguna transacción en el cajero automático los clientes del banco al que pertenece 
         el cajero deben tener una tarjeta de débito, del cliente se requiere registrar un identificador, nombre 
         y dirección, de la tarjeta de débito la cuenta y el cliente dueño de dicha tarjeta. 
