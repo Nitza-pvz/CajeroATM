@@ -3,12 +3,14 @@ public class Cuenta {
     String tipo;
     Cliente cliente;
     String numeroCuenta;
+    double saldo;
 
     //Constructor
-    public Cuenta (String tipo, Cliente cliente, String numeroCuenta) {
+    public Cuenta (String tipo, Cliente cliente, String numeroCuenta, double saldo) {
         this.cliente = cliente;
         this.tipo = tipo;
         this.numeroCuenta = numeroCuenta;
+        this.saldo = saldo;
     }
 
     //Métodos Get/Set
@@ -22,5 +24,13 @@ public class Cuenta {
 
     public String getNumeroCuenta() {
         return numeroCuenta;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double s) {
+        saldo = s;
     }
 }
