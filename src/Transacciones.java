@@ -6,13 +6,30 @@ public abstract class Transacciones {
 	Date fecha;
     String tipo;
     double monto;
+    String cuentaDestino;
 
-    //Constructor
+    //Constructores
     public Transacciones(String IDTransaccion, Date fecha, String tipo, double monto) {
         this.tipo = tipo;
         this.fecha = fecha;
         this.IDTransaccion = IDTransaccion;
         this.monto = monto;
+    }
+
+    public Transacciones(String IDTransaccion, Date fecha, String tipo, double monto, String cuentaDestino) {
+        this.tipo = tipo;
+        this.fecha = fecha;
+        this.IDTransaccion = IDTransaccion;
+        this.monto = monto;
+        this.cuentaDestino = cuentaDestino;
+    }
+
+    public void Retirar(String numCuenta, String tipo, double monto) {
+        
+    }
+
+    public void Transferir(String cuentaOrigen, String cuentaDestino, String tipo, double monto) {
+
     }
 
     public void Operaciones() {
@@ -76,5 +93,9 @@ public abstract class Transacciones {
 
     public double getMonto() {
         return monto;
+    }
+
+    public String getCuentaDestino() {
+        return cuentaDestino;
     }
 }
