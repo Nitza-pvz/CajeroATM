@@ -21,7 +21,6 @@ Crear proyecto para simular funcionalidad de cajero automático con las siguient
         o Cuenta de cheques),  transacción a realizar (Retiro, Transferencia) y monto, así como imprimir el ticket con el 
         resumen de la transacción (Punto 8).
     11.-El proyecto debe tener por lo menos una clase abstracta, herencia de dicha clase y una interface.*/
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -58,17 +57,15 @@ public class Main {
         String numCuenta = entrada.nextLine();
         //System.out.println("Ingrese su NIP: ");
         //int nip = entrada.nextInt();
-        int index = 0;
         Cuenta cuentaOr = null;
         for (Cuenta cuenta : cuentas) {
             if (cuenta.numeroCuenta.equals(numCuenta)) {
-                index = cuentas.indexOf(numCuenta);
+                System.out.println("-----------------------------------------");
+                System.out.println("Bienvenido "+cuenta.cliente.nombre);
                 cuentaOr = cuenta;
                 break;
             }
         }
-        System.out.println("-----------------------------------------");
-        System.out.println("Bienvenido "+cuentas.get(index).cliente.nombre);
         System.out.println("Seleccione el tipo de transacción:");
         System.out.println("1. Transferencia");
         System.out.println("2. Retiro de Efectivo");
@@ -80,17 +77,14 @@ public class Main {
             String cuentaDestino = entrada.nextLine();
             for (Cuenta cuenta : cuentas) {
                 if (cuenta.numeroCuenta.equals(cuentaDestino)) {
-                    //Transaccion transferir = new Transferencia("001", LocalDate.now(), monto, cuenta);
                     atm.Transferir(cuentaOr, cuenta, cuenta.tipo, monto);
                     break;
                 }
             }
         } else if (op == 2)  {
-            //Transaccion retirar = new Retiro("001", LocalDate.now(), monto);
             atm.Retirar(cuentaOr, cuentaOr.tipo, monto);
         } else {
             System.out.println("Opción no válida... Saliendo");
         }
-        
     }
 }
