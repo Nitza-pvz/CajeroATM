@@ -21,6 +21,7 @@ Crear proyecto para simular funcionalidad de cajero automático con las siguient
         o Cuenta de cheques),  transacción a realizar (Retiro, Transferencia) y monto, así como imprimir el ticket con el 
         resumen de la transacción (Punto 8).
     11.-El proyecto debe tener por lo menos una clase abstracta, herencia de dicha clase y una interface.*/
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -29,31 +30,43 @@ public class Main {
         //Cajero
         Cajero atm = new Cajero("Av. Álvaro Obregón #258", "BBVA");
         //Clientes
+        ArrayList<Cliente> clientes = new ArrayList<>();
         Cliente cte01 = new Cliente("20170859", "Nitza Vega", "Bahía de Altamira #1616");
         Cliente cte02 = new Cliente("17170599", "Juan Ramirez", "República #258");
         Cliente cte03 = new Cliente("19170741", "María Soto", "Pascual Orozco #987");
+        clientes.add(cte01);    clientes.add(cte02);    clientes.add(cte03);
         //Cuentas
+        ArrayList<Cuenta> cuentas = new ArrayList<>();
         Cuenta cta01 = new Cuenta("Cuenta de Ahorro", cte01, "9876543210");
         Cuenta cta02 = new Cuenta("Cuenta de Cheques", cte02, "1234567890");
         Cuenta cta03 = new Cuenta("Cuenta de Ahorro", cte03, "6549873210");
         Cuenta cta04 = new Cuenta("Cuenta de Cheques", cte01, "9638527410");
+        cuentas.add(cta01); cuentas.add(cta02); cuentas.add(cta03); cuentas.add(cta04);
         //Tarjetas
+        ArrayList<TarjetaDebito> tarjetas = new ArrayList<>();
         TarjetaDebito tar01 = new TarjetaDebito(cta01, cte01);
         TarjetaDebito tar02 = new TarjetaDebito(cta02, cte02);
         TarjetaDebito tar03 = new TarjetaDebito(cta03, cte03);
         TarjetaDebito tar04 = new TarjetaDebito(cta04, cte01);
+        tarjetas.add(tar01);    tarjetas.add(tar02);    tarjetas.add(tar03);    tarjetas.add(tar04);
         
         //Pantalla del cajero
         System.out.println("-----------------------------------------");
         System.out.println("Bienvenido al cajero automático "+atm.banco);
         System.out.println("Ingrese su número de cuenta: ");
         String numCuenta = entrada.nextLine();
-        System.out.println("Ingrese su NIP: ");
-        int nip = entrada.nextInt();
-        System.out.println("----------------------------------------------------");
+        //System.out.println("Ingrese su NIP: ");
+        //int nip = entrada.nextInt();
+        int index = 0;
+        for (Cuenta cuenta : cuentas) {
+            if (cuenta.numeroCuenta.equals(numCuenta)) {
+                index = cuentas.indexOf(numCuenta);
+                break;
+            }
+        }
+        System.out.println("-----------------------------------------");
+        System.out.println("Bienvenido "+cuentas.get(index).cliente.nombre);
         
-
-
         /*if(Nombre.equals("Catalina") && Num_cuenta.equals("23140972") && Nip==8002) {
         	System.out.println("===============================================");
         	System.out.print(Nombre);
