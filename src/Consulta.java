@@ -1,4 +1,4 @@
-public class Consulta extends Clase_Abstractaa{
+public class Consulta extends Transacciones{
     
     @Override
     public void Transacciones(){

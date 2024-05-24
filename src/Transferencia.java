@@ -1,6 +1,21 @@
-public class Transferencia extends Clase_Abstractaa {
+import java.util.Date;
 
-    @Override
+public class Transferencia extends Transacciones {
+    //Atributos
+    String cuentaDestino;
+
+    //Constructor
+    public Transferencia(String IDTransaccion, Date fecha, double monto, String cuentaDestino) {
+		super(IDTransaccion, fecha, "Transferencia", monto);
+        this.cuentaDestino = cuentaDestino;
+	}
+
+    //Métodos Get
+    public String getCuentaDestino() {
+        return cuentaDestino;
+    }
+
+    /*@Override
     public void Transacciones() {
     			System.out.print("Cuanto quieres Transferir: ");
                 Transferencia();
@@ -23,5 +38,5 @@ public class Transferencia extends Clase_Abstractaa {
         	
                 }
     			
-    }
+    }*/
 }

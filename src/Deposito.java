@@ -1,4 +1,4 @@
-public class Deposito extends Clase_Abstractaa{
+public class Deposito extends Transacciones{
     
     @Override
     public void Transacciones(){

@@ -1,10 +1,19 @@
-import java.util.Scanner;
-//Hola Mundo!
-public abstract class Clase_Abstractaa {
-	String numero_cuenta;
-    protected int transacciones, retiro, deposito,transferencia;
-    private static int saldo;
-    Scanner entrada = new Scanner(System.in);
+import java.util.Date;
+
+public abstract class Transacciones {
+    //Atributos
+    String IDTransaccion;
+	Date fecha;
+    String tipo;
+    double monto;
+
+    //Constructor
+    public Transacciones(String IDTransaccion, Date fecha, String tipo, double monto) {
+        this.tipo = tipo;
+        this.fecha = fecha;
+        this.IDTransaccion = IDTransaccion;
+        this.monto = monto;
+    }
 
     public void Operaciones() {
         int bandera = 0;
@@ -20,7 +29,7 @@ public abstract class Clase_Abstractaa {
                 System.out.println("    3. Deposito de efectivo.");
                 System.out.println("    4. Hacer una transferencia");
                 System.out.println("    5. Salir.");
-                seleccion = entrada.nextInt();
+                //seleccion = entrada.nextInt();
 
                 if (seleccion >= 1 && seleccion <= 5) {
                     bandera = 1;
@@ -32,16 +41,16 @@ public abstract class Clase_Abstractaa {
             } while (bandera == 0);
             
             if(seleccion == 1){
-            	Clase_Abstractaa mensajero = new Consulta();
+            	Transacciones mensajero = new Consulta();
                 mensajero.Transacciones();
             }else if(seleccion == 2){
-            	Clase_Abstractaa mensajero = new Retiro();
+            	Transacciones mensajero = new Retiro();
                 mensajero.Transacciones();
             } else if(seleccion == 3){
-            	Clase_Abstractaa mensajero = new Deposito();
+            	Transacciones mensajero = new Deposito();
                 mensajero.Transacciones();
             } else if(seleccion == 4){
-            	Clase_Abstractaa mensajero = new Transferencia();
+            	Transacciones mensajero = new Transferencia();
                 mensajero.Transacciones();
             } else if(seleccion == 5){
                 System.out.println("==========================");
@@ -51,27 +60,21 @@ public abstract class Clase_Abstractaa {
             }
         } while (bandera != 2);
     }
-    public void Numero_cuenta(){
-    	 numero_cuenta = entrada.nextLine();
-    }
-	public void Retiro(){
-        retiro = entrada.nextInt();
-    }
-    
-    public void Deposito(){
-        deposito = entrada.nextInt();
-    }
-    public void Transferencia(){
-        transferencia = entrada.nextInt();
-    }
-    public abstract void Transacciones();
 
-    public int getSaldo(){
-        return saldo;
-    }
+    //Métodos Get
+    public String getIDTransaccion() {
+        return IDTransaccion;
+    } 
     
-    public void setSaldo(int saldo){
-        this.saldo = saldo;
+    public Date getFecha() {
+        return fecha;
     }
-    
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public double getMonto() {
+        return monto;
+    }
 }

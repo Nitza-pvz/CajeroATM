@@ -37,7 +37,7 @@ public class Main {
         if(Nombre.equals("Catalina") && Num_cuenta.equals("23140972") && Nip==8002) {
         	System.out.println("===============================================");
         	System.out.print(Nombre);
-            Clase_Abstractaa mesajero = new Consulta();
+            Transacciones mesajero = new Consulta();
             mesajero.setSaldo(1700);
             mesajero.Operaciones();
         }else {

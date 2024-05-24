@@ -1,6 +1,12 @@
-public class Retiro extends Clase_Abstractaa {
+import java.util.Date;
+public class Retiro extends Transacciones {
 
-    @Override
+	//Constructor
+	public Retiro(String IDTransaccion, Date fecha, double monto) {
+		super(IDTransaccion, fecha, "Retiro", monto);
+	}
+
+    /*@Override
     public void Transacciones() {
     	
     			 System.out.print("Cuanto deseas retirar: ");
@@ -18,9 +24,7 @@ public class Retiro extends Clase_Abstractaa {
     		        } else {
     		            System.out.println("=====================");
     		            System.out.println("Saldo insuficiente.");
-    		            System.out.println("=====================");
-    
-       
+    		            System.out.println("=====================");  
     }
-}
+}*/
 }
