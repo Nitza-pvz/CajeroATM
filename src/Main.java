@@ -21,6 +21,7 @@ Crear proyecto para simular funcionalidad de cajero automático con las siguient
         o Cuenta de cheques),  transacción a realizar (Retiro, Transferencia) y monto, así como imprimir el ticket con el 
         resumen de la transacción (Punto 8).
     11.-El proyecto debe tener por lo menos una clase abstracta, herencia de dicha clase y una interface.*/
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -37,10 +38,10 @@ public class Main {
         clientes.add(cte01);    clientes.add(cte02);    clientes.add(cte03);
         //Cuentas
         ArrayList<Cuenta> cuentas = new ArrayList<>();
-        Cuenta cta01 = new Cuenta("Cuenta de Ahorro", cte01, "9876543210");
-        Cuenta cta02 = new Cuenta("Cuenta de Cheques", cte02, "1234567890");
-        Cuenta cta03 = new Cuenta("Cuenta de Ahorro", cte03, "6549873210");
-        Cuenta cta04 = new Cuenta("Cuenta de Cheques", cte01, "9638527410");
+        Cuenta cta01 = new Cuenta("Cuenta de Ahorro", cte01, "9876543210", 2500);
+        Cuenta cta02 = new Cuenta("Cuenta de Cheques", cte02, "1234567890", 3200);
+        Cuenta cta03 = new Cuenta("Cuenta de Ahorro", cte03, "6549873210", 55);
+        Cuenta cta04 = new Cuenta("Cuenta de Cheques", cte01, "9638527410", 125);
         cuentas.add(cta01); cuentas.add(cta02); cuentas.add(cta03); cuentas.add(cta04);
         //Tarjetas
         ArrayList<TarjetaDebito> tarjetas = new ArrayList<>();
@@ -58,26 +59,38 @@ public class Main {
         //System.out.println("Ingrese su NIP: ");
         //int nip = entrada.nextInt();
         int index = 0;
+        Cuenta cuentaOr = null;
         for (Cuenta cuenta : cuentas) {
             if (cuenta.numeroCuenta.equals(numCuenta)) {
                 index = cuentas.indexOf(numCuenta);
+                cuentaOr = cuenta;
                 break;
             }
         }
         System.out.println("-----------------------------------------");
         System.out.println("Bienvenido "+cuentas.get(index).cliente.nombre);
+        System.out.println("Seleccione el tipo de transacción:");
+        System.out.println("1. Transferencia");
+        System.out.println("2. Retiro de Efectivo");
+        int op = entrada.nextInt();
+        System.out.print("Ingrese el monto: ");
+        double monto = entrada.nextDouble();
+        if (op == 1) {
+            System.out.print("Ingrese el número de cuenta de destino: ");
+            String cuentaDestino = entrada.nextLine();
+            for (Cuenta cuenta : cuentas) {
+                if (cuenta.numeroCuenta.equals(cuentaDestino)) {
+                    //Transaccion transferir = new Transferencia("001", LocalDate.now(), monto, cuenta);
+                    atm.Transferir(cuentaOr, cuenta, cuenta.tipo, monto);
+                    break;
+                }
+            }
+        } else if (op == 2)  {
+            //Transaccion retirar = new Retiro("001", LocalDate.now(), monto);
+            atm.Retirar(cuentaOr, cuentaOr.tipo, monto);
+        } else {
+            System.out.println("Opción no válida... Saliendo");
+        }
         
-        /*if(Nombre.equals("Catalina") && Num_cuenta.equals("23140972") && Nip==8002) {
-        	System.out.println("===============================================");
-        	System.out.print(Nombre);
-            /*Transacciones mesajero = new Consulta();
-            mesajero.setSaldo(1700);
-            mesajero.Operaciones();
-        }else {
-        	System.out.println("===============================================");
-            System.out.println("Alguno de sus datos es erroneo, intente denuevo");
-        	System.out.println("===============================================");
-   
-        }*/
     }
 }
