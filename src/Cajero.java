@@ -13,11 +13,12 @@ public class Cajero {
 
     public void Retirar(Cuenta cuenta, String tipo, double monto) {
         Transaccion retiro = new Retiro("", LocalDate.now(), monto);
-        
+        imprimirTicket(retiro, cuenta);
     }
 
     public void Transferir(Cuenta cuentaOrigen, Cuenta cuentaDestino, String tipo, double monto) {
         Transaccion transferir = new Transferencia("", LocalDate.now(), monto, cuentaDestino);
+        imprimirTicket(transferir, cuentaOrigen);
     }
 
     //Métodos Get/Set
@@ -37,7 +38,15 @@ public class Cajero {
         banco = ban;
     }
 
-    public void imprimirTicket() {
-
+    public void imprimirTicket(Transaccion t, Cuenta cta) {
+        System.out.println("**\tBBVA BANCOMER, S.A.\t**");
+        System.out.println("FECHA: "+t.fecha);
+        System.out.println(t.tipo.toUpperCase());
+        System.out.println("\nCLIENTE: "+cta.cliente.nombre.toUpperCase());
+        System.out.println("UBICADO EN: "+ubicacion.toUpperCase());
+        System.out.println("\nFOLIO: "+t.IDTransaccion);
+        System.out.println("CUENTA: "+cta.numeroCuenta);
+        System.out.println("IMPORTE: $"+t.monto);
+        System.out.println("\t\tBBVA BANCOMER");
     }
 }
