@@ -1,18 +1,18 @@
-import java.util.Date;
+import java.time.LocalDate;
 
-public class Transferencia extends Transacciones {
+public class Transferencia extends Transaccion {
     //Atributos
-    String cuentaDestino;
+    Cuenta cuentaDestino;
 
     //Constructor
-    public Transferencia(String IDTransaccion, Date fecha, double monto, String cuentaDestino) {
+    public Transferencia(String IDTransaccion, LocalDate fecha, double monto, Cuenta cuentaDestino) {
 		super(IDTransaccion, fecha, "Transferencia", monto);
         this.cuentaDestino = cuentaDestino;
 	}
 
     //Métodos Get
     public String getCuentaDestino() {
-        return cuentaDestino;
+        return cuentaDestino.numeroCuenta;
     }
 
     /*@Override

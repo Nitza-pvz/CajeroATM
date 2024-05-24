@@ -24,7 +24,7 @@ Crear proyecto para simular funcionalidad de cajero automático con las siguient
 import java.util.Scanner;
 
 public class Main {
-	static Scanner entrada = new Scanner(System.in);
+	/*static Scanner entrada = new Scanner(System.in);
     public static void main(String[] args) {
         System.out.println("----------------------------------------------------");
         System.out.println("Ingrese su Nombre:	(Catalina)");
@@ -49,5 +49,5 @@ public class Main {
     }
     public String getNombre(){
         return getNombre();
-    }
+    }*/
 }

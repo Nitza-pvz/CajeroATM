@@ -1,22 +1,22 @@
-import java.util.Date;
+import java.time.LocalDate;
 
-public abstract class Transacciones {
+public abstract class Transaccion {
     //Atributos
     String IDTransaccion;
-	Date fecha;
+	LocalDate fecha;
     String tipo;
     double monto;
     String cuentaDestino;
 
     //Constructores
-    public Transacciones(String IDTransaccion, Date fecha, String tipo, double monto) {
+    public Transaccion(String IDTransaccion, LocalDate fecha, String tipo, double monto) {
         this.tipo = tipo;
         this.fecha = fecha;
         this.IDTransaccion = IDTransaccion;
         this.monto = monto;
     }
 
-    public Transacciones(String IDTransaccion, Date fecha, String tipo, double monto, String cuentaDestino) {
+    public Transaccion(String IDTransaccion, LocalDate fecha, String tipo, double monto, String cuentaDestino) {
         this.tipo = tipo;
         this.fecha = fecha;
         this.IDTransaccion = IDTransaccion;
@@ -24,15 +24,7 @@ public abstract class Transacciones {
         this.cuentaDestino = cuentaDestino;
     }
 
-    public void Retirar(String numCuenta, String tipo, double monto) {
-        
-    }
-
-    public void Transferir(String cuentaOrigen, String cuentaDestino, String tipo, double monto) {
-
-    }
-
-    public void Operaciones() {
+        /*public void Operaciones() {
         int bandera = 0;
         int seleccion = 0;
         String Nombre = "";
@@ -76,14 +68,14 @@ public abstract class Transacciones {
                 bandera = 2;
             }
         } while (bandera != 2);
-    }
+    }*/
 
     //Métodos Get
     public String getIDTransaccion() {
         return IDTransaccion;
     } 
     
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 

@@ -1,6 +1,6 @@
-public class Consulta extends Transacciones{
+public class Consulta {
     
-    @Override
+    /*@Override
     public void Transacciones(){
         System.out.println("====================================");
         System.out.println("=================BBVA===============");
@@ -8,5 +8,5 @@ public class Consulta extends Transacciones{
         System.out.println("Se relalizo una Consulta el 31/10/2023");
         System.out.println("Tu saldo actual es: " + getSaldo());
         System.out.println("====================================");
-    }    
+    }    */
 }

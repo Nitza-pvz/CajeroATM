@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Cajero {
     //Atributos
     String ubicacion;
@@ -7,6 +9,15 @@ public class Cajero {
     public Cajero (String ubicacion, String banco) {
         this.banco = banco;
         this.ubicacion = ubicacion;
+    }
+
+    public void Retirar(Cuenta cuenta, String tipo, double monto) {
+        Transaccion retiro = new Retiro("", LocalDate.now(), monto);
+        
+    }
+
+    public void Transferir(Cuenta cuentaOrigen, Cuenta cuentaDestino, String tipo, double monto) {
+        Transaccion transferir = new Transferencia("", LocalDate.now(), monto, cuentaDestino);
     }
 
     //Métodos Get/Set
@@ -24,5 +35,9 @@ public class Cajero {
 
     public void setBanco(String ban) {
         banco = ban;
+    }
+
+    public void imprimirTicket() {
+
     }
 }
