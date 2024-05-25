@@ -31,39 +31,40 @@ public class Main {
     static ArrayList<Cuenta> cuentas;
     static ArrayList<TarjetaDebito> tarjetas;
 
+    /*PASOS DEL CAJERO AUTOMATICO
+            1. Ingreso del numero de cuenta.
+            2. Ingreso del tipo de cuenta (Cuenta de Cheques o Cuenta de Ahorros).
+            3. Selección del tipo de Transaccion:
+                3.0. Ingresa el monto
+                3.1. Retira el dinero en efectivo
+                3.2. Ingresa la cuenta destino e inicia transferencia.
+            4. Imprime ticket
+            5. Finaliza
+    */
+
     public static void main(String[] args) {
         //DATOS PRECARGADOS
         init();
-
+        
         //PANTALLA INICIAL DEL CAJERO
         System.out.println("-----------------------------------------");
         System.out.println("Bienvenido al cajero automático "+atm.banco);
         //Ingreso del número de cuenta
         System.out.println("Ingrese su número de cuenta: ");
         String numCuenta = entrada.nextLine();
-        //Ingreso del NIP para acceso a la cuenta
-        //System.out.println("Ingrese su NIP: ");
-        //int nip = entrada.nextInt();
+    //Ingreso del NIP para acceso a la cuenta
+    //System.out.println("Ingrese su NIP: ");
+    //int nip = entrada.nextInt();
 
-        /* DETERMINAR SI LA CUENTA EXISTE E INSTANCIARLA
-                Instancia de la clase Cuenta para almacenar la cuenta que se 
-                encuentra almacenada, verifica si existe. Muestra datos de
-                Saldo disponible y nombre del cliente.
+        /* DETERMINAR SI LA CUENTA EXISTE
+                Instancia de la clase Cuenta que llama al método
+                buscarCuenta(Cuenta), para verificar si existe.
+                Muestra el nombre y saldo disponible del cliente.
         */
-
         Cuenta cuentaOr = buscarCuenta(numCuenta);
         System.out.println("-----------------------------------------");
         System.out.println("Bienvenido "+cuentaOr.cliente.nombre);
         System.out.println("SALDO: $"+cuentaOr.saldo);
-        /*for (Cuenta cuenta : cuentas) {
-            if (cuenta.numeroCuenta.equals(numCuenta)) {
-                System.out.println("-----------------------------------------");
-                System.out.println("Bienvenido "+cuenta.cliente.nombre);
-                cuentaOr = cuenta;
-                break;
-            }
-        }
-        System.out.println("SALDO: $"+cuentaOr.saldo);*/
 
         /*  SELECCION DEL TIPO DE TRANSACCION
                 Dado que en ambas transacciones debe ingresar un monto,
@@ -86,15 +87,9 @@ public class Main {
             System.out.println("Ingrese el número de cuenta de destino: ");
             String cuentaDestino = entrada.next();
             Cuenta ctaDestino = buscarCuenta(cuentaDestino);
-            System.out.println("Saldo antes: "+ctaDestino.saldo);
+            //System.out.println("Saldo antes: "+ctaDestino.saldo);
             atm.Transferir(cuentaOr, ctaDestino, ctaDestino.tipo, monto);
-            System.out.println("Saldo despues: "+ctaDestino.saldo);
-            /*for (Cuenta cuenta : cuentas) {
-                if (cuenta.numeroCuenta.equals(cuentaDestino)) {
-                    atm.Transferir(cuentaOr, cuenta, cuenta.tipo, monto);
-                    break;
-                }
-            }*/
+            //System.out.println("Saldo despues: "+ctaDestino.saldo);
         } else if (op == 2)  {
             atm.Retirar(cuentaOr, cuentaOr.tipo, monto);
         } else {
@@ -104,16 +99,16 @@ public class Main {
     }
 
     public static Cuenta buscarCuenta(String numCuenta) {
+        /*Método que verifica si la cuenta existe.
+         *Retorna la instancia de la cuenta.
+         */
         Cuenta cuentaOr = null;
         for (Cuenta cuenta : cuentas) {
             if (cuenta.numeroCuenta.equals(numCuenta)) {
-                //System.out.println("-----------------------------------------");
-                //System.out.println("Bienvenido "+cuenta.cliente.nombre);
                 cuentaOr = cuenta;
                 break;
             }
         }
-        //System.out.println("SALDO: $"+cuentaOr.saldo);
         return cuentaOr;
     }
 
