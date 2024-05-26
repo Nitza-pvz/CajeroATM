@@ -45,7 +45,8 @@ public class Main {
     public static void main(String[] args) {
         //DATOS PRECARGADOS
         init();
-        String numCuenta;
+        String numCuenta, tipoCta = "";
+        int opTran, opTipo;
         /*  Ciclo que mantiene actividad en el cajero.Se mantendrá
             activo y repetitivo para el siguiente cliente. Dado que
             el cliente cometa algun error, simplemente pasa a la
@@ -62,8 +63,7 @@ public class Main {
             System.out.println("Seleccione el tipo de cuenta: ");
             System.out.println("1. Cuenta de Ahorro");
             System.out.println("2. Cuenta de Cheques");
-            int opTipo = 0;
-            String tipoCta = "";
+            opTipo = 0;
             /*Ciclo para que solo tenga las dos opciones que se presentan.
              *Segun la opcion elegida, la almacena en un String para buscar
                 si existe.
@@ -86,7 +86,7 @@ public class Main {
                     Sino, indica que no existe al cliente y rompe la iteracion
                     del ciclo para dar lugar a otra entrada de datos al cliente.
             */
-            Cuenta cuentaOr = buscarCuenta(numCuenta);
+            Cuenta cuentaOr = buscarCuenta(numCuenta, tipoCta);
             if (cuentaOr == null) {
                 System.out.println("Su cuenta no existe\nPorfavor intentelo de nuevo\n\n");
                 continue;
@@ -108,15 +108,15 @@ public class Main {
             System.out.println("Seleccione el tipo de transacción:");
             System.out.println("1. Transferencia");
             System.out.println("2. Retiro de Efectivo");
-            int op = entrada.nextInt();
-            if (op != 1 && op != 2) {
+            opTran = entrada.nextInt();
+            if (opTran != 1 && opTran != 2) {
                 System.out.println("\nOpción no válida... Saliendo\n\n");
                 continue;
             }
             //Ingreso del monto
             System.out.print("Ingrese el monto: ");
             double monto = entrada.nextDouble();
-            if (op == 1) {
+            if (opTran == 1) {
                 System.out.println("Ingrese el número de cuenta de destino: ");
                 String cuentaDestino = entrada.next();
                 Cuenta ctaDestino = buscarCuenta(cuentaDestino);
@@ -124,11 +124,9 @@ public class Main {
                     System.out.println("La cuenta no existe... Saliendo\n\n");
                     continue;
                 }
-                //System.out.println("Saldo antes: "+ctaDestino.saldo);
                 atm.Transferir(cuentaOr, ctaDestino, ctaDestino.tipo, monto);
-                //System.out.println("Saldo despues: "+ctaDestino.saldo);
             }
-            if (op == 2)  {
+            if (opTran == 2)  {
                 atm.Retirar(cuentaOr, cuentaOr.tipo, monto);
             }
         } while (estado);
@@ -137,12 +135,31 @@ public class Main {
 
     public static Cuenta buscarCuenta(String numCuenta) {
         /*Método que verifica si la cuenta existe.
-         *Retorna la instancia de la cuenta. */
+         *Retorna la instancia de la cuenta.
+         *SOLO determina si en Número de Cuenta exite.
+         */
         Cuenta cuentaOr = null;
         for (Cuenta cuenta : cuentas) {
             if (cuenta.numeroCuenta.equals(numCuenta)) {
                 cuentaOr = cuenta;
                 break;
+            }
+        }
+        return cuentaOr;
+    }
+
+    public static Cuenta buscarCuenta(String numCuenta, String tipoCta) {
+        /*Método que verifica si la cuenta existe.
+         *Retorna la instancia de la cuenta. 
+         *Identifica si existe con el Número de Cuenta
+            y si coincide con el Tipo de Cuenta*/
+        Cuenta cuentaOr = null;
+        for (Cuenta cuenta : cuentas) {
+            if (cuenta.numeroCuenta.equals(numCuenta)) {
+                if (cuenta.tipo.equals(tipoCta)) {
+                    cuentaOr = cuenta;
+                    break;
+                }
             }
         }
         return cuentaOr;
