@@ -1,6 +1,5 @@
 import java.security.SecureRandom;
 import java.time.LocalDate;
-import java.util.random.*;
 
 public class Cajero {
     //Atributos
@@ -13,6 +12,16 @@ public class Cajero {
         this.ubicacion = ubicacion;
     }
 
+    /*MÉTODO PARA RETIRAR
+     * Recibe de parámetros:
+        1. Cuenta del cliente que hará el retiro
+        2. Tipo de cuenta
+        3. Monto a retirar
+    *Compara si el monto a retirar es mayor al saldo disponible,
+        envia un recibo de cancelacion de la operacion y finaliza.
+    *Si el monto es menor, resta del saldo disponible el monto a
+        retirar e imprime el ticket.
+     */
     public void Retirar(Cuenta cuenta, String tipo, double monto) {
         Transaccion retiro = new Retiro(generarID("R"), LocalDate.now(), monto);
         if (monto > cuenta.saldo) {
@@ -24,6 +33,17 @@ public class Cajero {
         }
     }
 
+    /*MÉTODO PARA TRANSFERIR
+     * Recibe de parámetros:
+        1. Cuenta del cliente que hará la transferencia
+        2. Cuenta a quien se dirige la transferencia
+        3. Tipo de cuenta
+        4. Monto a retirar
+    *Compara si el monto a transferir es mayor al saldo disponible,
+        envia un recibo de cancelacion de la operacion y finaliza.
+    *Si el monto es menor, resta del saldo disponible el monto a
+        retirar, se lo suma a la cuenta destino e imprime el ticket.
+     */
     public void Transferir(Cuenta cuentaOrigen, Cuenta cuentaDestino, String tipo, double monto) {
         Transaccion transferir = new Transferencia(generarID("T"), LocalDate.now(), monto, cuentaDestino);
         if (monto > cuentaOrigen.saldo) {
@@ -53,6 +73,13 @@ public class Cajero {
         banco = ban;
     }
 
+    /*METODO PARA IMPRIMIR EL TICKET
+        variable booleana indica el estado de la transaccion:
+            'true'  Transaccion     'false' Cancelacion
+        Dependieno del valor booleano, imprime las líneas de
+        texto requeridas.
+        Muestra datos de la transaccion, cliente, cajero y el monto.
+     */
     public void imprimirTicket(Transaccion t, Cuenta cta, boolean status) {
         System.out.println("\n**\tBBVA BANCOMER, S.A.\t**");
         System.out.println("CAJERO ATM / BANCO: "+banco.toUpperCase());
@@ -81,6 +108,15 @@ public class Cajero {
         System.out.println("---------- BBVA BANCOMER ----------\n");
     }
 
+    /*GENERADOR DE FOLIOS
+        Método que retorna un string del folio.
+        Utiliza un generador aleatorio de caracteres para formar
+        cadenas alfanuméricas de 9 digitos.
+        La estructura del folio es:
+            -1er caracter: Inicial de la transacción
+                'T' transferencia     'R' retiro
+            -Resto de caracteres: generador aleatorio
+     */
     SecureRandom random = new SecureRandom();
     public String generarID(String tran) {
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
