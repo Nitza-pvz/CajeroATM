@@ -129,6 +129,7 @@ public class Main {
             if (opTran == 2)  {
                 atm.Retirar(cuentaOr, cuentaOr.tipo, monto);
             }
+            System.out.println("\nGracias por visitarnos, que tenga un buen día :)\n\n");
         } while (estado);
         entrada.close();
     }
