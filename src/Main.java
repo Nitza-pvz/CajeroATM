@@ -167,7 +167,7 @@ public class Main {
     }
 
     public static void init() {
-        /*Se inicializan datos precargados para las pruebas*/
+        /*Se inicializan datos precargados*/
         //Cajero
         atm = new Cajero("Av. Álvaro Obregón #258", "BBVA");
         //Clientes

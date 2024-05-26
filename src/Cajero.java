@@ -1,4 +1,6 @@
+import java.security.SecureRandom;
 import java.time.LocalDate;
+import java.util.random.*;
 
 public class Cajero {
     //Atributos
@@ -12,7 +14,7 @@ public class Cajero {
     }
 
     public void Retirar(Cuenta cuenta, String tipo, double monto) {
-        Transaccion retiro = new Retiro("", LocalDate.now(), monto);
+        Transaccion retiro = new Retiro(generarID("R"), LocalDate.now(), monto);
         if (monto > cuenta.saldo) {
             System.out.println("\nLo sentimos, no dispone de saldo suficiente");
             imprimirTicket(retiro, cuenta, false);
@@ -23,7 +25,7 @@ public class Cajero {
     }
 
     public void Transferir(Cuenta cuentaOrigen, Cuenta cuentaDestino, String tipo, double monto) {
-        Transaccion transferir = new Transferencia("", LocalDate.now(), monto, cuentaDestino);
+        Transaccion transferir = new Transferencia(generarID("T"), LocalDate.now(), monto, cuentaDestino);
         if (monto > cuentaOrigen.saldo) {
             System.out.println("\nLo sentimos, no dispone de saldo suficiente");
             imprimirTicket(transferir, cuentaOrigen, false);
@@ -77,5 +79,16 @@ public class Cajero {
             System.out.println("SALDO: $"+cta.getSaldo());
         }
         System.out.println("---------- BBVA BANCOMER ----------\n");
+    }
+
+    SecureRandom random = new SecureRandom();
+    public String generarID(String tran) {
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        StringBuilder resultado = new StringBuilder(9);
+        for (int i = 0; i < 9; i++) {
+            int index = random.nextInt(caracteres.length());
+            resultado.append(caracteres.charAt(index));
+        }
+        return tran+resultado.toString();
     }
 }
