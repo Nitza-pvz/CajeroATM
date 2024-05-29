@@ -22,8 +22,11 @@ public class Main {
     public static void main(String[] args) {
         //DATOS PRECARGADOS
         init();
+
+        //Variables locales
         String numCuenta, tipoCta = "";
         int opTran, opTipo;
+
         /*  Ciclo que mantiene actividad en el cajero.Se mantendrá
             activo y repetitivo para el siguiente cliente. Dado que
             el cliente cometa algun error, simplemente pasa a la
@@ -32,7 +35,7 @@ public class Main {
         do {
             //PANTALLA INICIAL DEL CAJERO
             System.out.println("-----------------------------------------");
-            System.out.println("Bienvenido al cajero automático "+atm.banco);
+            System.out.println("Bienvenido al cajero automático "+atm.getBanco());
             //Ingreso del número de cuenta
             System.out.println("Ingrese su número de cuenta: ");
             numCuenta = entrada.next();
@@ -41,6 +44,7 @@ public class Main {
             System.out.println("1. Cuenta de Ahorro");
             System.out.println("2. Cuenta de Cheques");
             opTipo = 0;
+            
             /*Ciclo para que solo tenga las dos opciones que se presentan.
              *Segun la opcion elegida, la almacena en un String para buscar
                 si existe.
@@ -69,8 +73,8 @@ public class Main {
                 continue;
             }
             System.out.println("-----------------------------------------");
-            System.out.println("Bienvenido "+cuentaOr.cliente.nombre);
-            System.out.println("SALDO: $"+cuentaOr.saldo);
+            System.out.println("Bienvenido "+cuentaOr.getCliente().getNombre());
+            System.out.println("SALDO: $"+cuentaOr.getSaldo());
 
             /*  SELECCION DEL TIPO DE TRANSACCION
                     Dado que en ambas transacciones debe ingresar un monto,
@@ -101,10 +105,10 @@ public class Main {
                     System.out.println("La cuenta no existe... Saliendo\n\n");
                     continue;
                 }
-                atm.Transferir(cuentaOr, ctaDestino, ctaDestino.tipo, monto);
+                atm.Transferir(cuentaOr, ctaDestino, ctaDestino.getTipo(), monto);
             }
             if (opTran == 2)  {
-                atm.Retirar(cuentaOr, cuentaOr.tipo, monto);
+                atm.Retirar(cuentaOr, cuentaOr.getTipo(), monto);
             }
             System.out.println("\nGracias por visitarnos, que tenga un buen día :)\n\n");
         } while (estado);
@@ -118,7 +122,7 @@ public class Main {
          */
         Cuenta cuentaOr = null;
         for (Cuenta cuenta : cuentas) {
-            if (cuenta.numeroCuenta.equals(numCuenta)) {
+            if (cuenta.getNumeroCuenta().equals(numCuenta)) {
                 cuentaOr = cuenta;
                 break;
             }
@@ -133,8 +137,8 @@ public class Main {
             y si coincide con el Tipo de Cuenta*/
         Cuenta cuentaOr = null;
         for (Cuenta cuenta : cuentas) {
-            if (cuenta.numeroCuenta.equals(numCuenta)) {
-                if (cuenta.tipo.equals(tipoCta)) {
+            if (cuenta.getNumeroCuenta().equals(numCuenta)) {
+                if (cuenta.getTipo().equals(tipoCta)) {
                     cuentaOr = cuenta;
                     break;
                 }

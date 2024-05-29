@@ -1,7 +1,7 @@
 public class TarjetaDebito {
     //Atributos
-    Cuenta cuenta;
-    Cliente cliente;
+    private Cuenta cuenta;
+    private Cliente cliente;
 
     //Constructor
     public TarjetaDebito(Cuenta cuenta, Cliente cliente) {

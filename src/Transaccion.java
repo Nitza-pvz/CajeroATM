@@ -2,10 +2,10 @@ import java.time.LocalDate;
 
 public abstract class Transaccion {
     //Atributos
-    String IDTransaccion;
-	LocalDate fecha;
-    String tipo;
-    double monto;
+    private String IDTransaccion;
+	private LocalDate fecha;
+    private String tipo;
+    private double monto;
 
     //Constructores
     public Transaccion(String IDTransaccion, LocalDate fecha, String tipo, double monto) {

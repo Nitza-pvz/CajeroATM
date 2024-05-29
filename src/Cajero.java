@@ -3,8 +3,8 @@ import java.time.LocalDate;
 
 public class Cajero {
     //Atributos
-    String ubicacion;
-    String banco;
+    private String ubicacion;
+    private String banco;
 
     //Constructor
     public Cajero (String ubicacion, String banco) {
@@ -23,12 +23,15 @@ public class Cajero {
         retirar e imprime el ticket.
      */
     public void Retirar(Cuenta cuenta, String tipo, double monto) {
+        double saldoFinal;
         Transaccion retiro = new Retiro(generarID("R"), LocalDate.now(), monto);
-        if (monto > cuenta.saldo) {
+        if (monto > cuenta.getSaldo()) {
             System.out.println("\nLo sentimos, no dispone de saldo suficiente");
             imprimirTicket(retiro, cuenta, false);
         } else {
-            cuenta.saldo -= monto;
+            saldoFinal = cuenta.getSaldo();
+            saldoFinal -= monto;
+            cuenta.setSaldo(saldoFinal);
             imprimirTicket(retiro, cuenta, true);
         }
     }
@@ -45,13 +48,18 @@ public class Cajero {
         retirar, se lo suma a la cuenta destino e imprime el ticket.
      */
     public void Transferir(Cuenta cuentaOrigen, Cuenta cuentaDestino, String tipo, double monto) {
+        double saldoOrFinal, saldoDesFinal;
         Transaccion transferir = new Transferencia(generarID("T"), LocalDate.now(), monto, cuentaDestino);
-        if (monto > cuentaOrigen.saldo) {
+        if (monto > cuentaOrigen.getSaldo()) {
             System.out.println("\nLo sentimos, no dispone de saldo suficiente");
             imprimirTicket(transferir, cuentaOrigen, false);
         } else {
-            cuentaOrigen.saldo -= monto;
-            cuentaDestino.saldo += monto;
+            saldoOrFinal = cuentaOrigen.getSaldo();
+            saldoOrFinal -= monto;
+            cuentaOrigen.setSaldo(saldoOrFinal);
+            saldoDesFinal = cuentaDestino.getSaldo();
+            saldoDesFinal += monto;
+            cuentaDestino.setSaldo(saldoDesFinal);
             imprimirTicket(transferir, cuentaOrigen, true);
         }
     }
@@ -90,13 +98,13 @@ public class Cajero {
             System.out.println("SALDO INSUFICIENTE");
             System.out.println("ESTATUS: CANCELADA");
         } else {
-            System.out.println("TIPO DE TRANSACCION: "+t.tipo.toUpperCase());
+            System.out.println("TIPO DE TRANSACCION: "+t.getTipo().toUpperCase());
             System.out.println("ESTATUS: APROBADA");
         }
         System.out.println("FOLIO: "+t.getIDTransaccion());
         System.out.println("CUENTA: "+cta.getNumeroCuenta());
-        System.out.println("CLIENTE: "+cta.cliente.nombre.toUpperCase());
-        if (t.tipo.equals("Transferencia") && status) {
+        System.out.println("CLIENTE: "+cta.getCliente().getNombre().toUpperCase());
+        if (t.getTipo().equals("Transferencia") && status) {
             System.out.println("CUENTA DESTINO: "+t.getCuentaDestino());
         }
         if (!status) {

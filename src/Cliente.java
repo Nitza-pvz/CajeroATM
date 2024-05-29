@@ -1,8 +1,8 @@
 public class Cliente {
     //Atributos
-    String ID;
-    String nombre;
-    String direccion;
+    private String ID;
+    private String nombre;
+    private String direccion;
 
     //Constructor
     public Cliente (String ID, String nombre, String direccion) {

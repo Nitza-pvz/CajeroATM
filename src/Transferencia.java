@@ -2,7 +2,7 @@ import java.time.LocalDate;
 
 public class Transferencia extends Transaccion {
     //Atributos
-    Cuenta cuentaDestino;
+    private Cuenta cuentaDestino;
 
     //Constructor
     public Transferencia(String IDTransaccion, LocalDate fecha, double monto, Cuenta cuentaDestino) {
@@ -12,6 +12,6 @@ public class Transferencia extends Transaccion {
 
     //Métodos Get
     public String getCuentaDestino() {
-        return cuentaDestino.numeroCuenta;
+        return cuentaDestino.getNumeroCuenta();
     }
 }

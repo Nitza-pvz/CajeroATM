@@ -1,9 +1,9 @@
 public class Cuenta {
     //Atributos
-    String tipo;
-    Cliente cliente;
-    String numeroCuenta;
-    double saldo;
+    private String tipo;
+    private Cliente cliente;
+    private String numeroCuenta;
+    private double saldo;
 
     //Constructor
     public Cuenta (String tipo, Cliente cliente, String numeroCuenta, double saldo) {
