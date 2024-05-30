@@ -105,7 +105,9 @@ public class Main {
                     System.out.println("La cuenta no existe... Saliendo\n\n");
                     continue;
                 }
+                System.out.println("Antes:"+ctaDestino.getSaldo());
                 atm.Transferir(cuentaOr, ctaDestino, ctaDestino.getTipo(), monto);
+                System.out.println("Despues:"+ctaDestino.getSaldo());
             }
             if (opTran == 2)  {
                 atm.Retirar(cuentaOr, cuentaOr.getTipo(), monto);
